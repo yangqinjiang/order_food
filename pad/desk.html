@@ -138,7 +138,7 @@
         <!--下单对话框-->
         <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-2">
             <div class="am-modal-dialog">
-                <div class="am-modal-hd">下单: A1 用餐人数 1人
+                <div style="color:white" v-bind:style="{ background: current_desk.status.color}" class="am-modal-hd">下单: {{current_desk.name}} 用餐人数 {{current_desk.number}}人 , {{current_desk.status.title}}
                     <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
                 </div>
                 <div class="am-modal-bd">
@@ -149,46 +149,19 @@
                                     <th>分类</th>
                                     <th>菜品</th>
                                     <th>数量</th>
-                                    <th>单价</th>
-                                    <th>小计</th>
+                                    <th>单价(元)</th>
+                                    <th>小计(元)</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>炒菜</td>
-                                    <td>正宗北部湾红树林海鸭蛋包</td>
-                                    <td>x2</td>
-                                    <td>69</td>
-                                    <td>148</td>
+                                <tr v-for="item in current_desk.dishes">
+                                    <td>{{item.type}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td>x{{item.number}}</td>
+                                    <td>{{item.unit_price}}</td>
+                                    <td>{{item.subtotal}}</td>
                                 </tr>
-                                <tr>
-                                    <td>炒菜</td>
-                                    <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                    <td>x2</td>
-                                    <td>69</td>
-                                    <td>148</td>
-                                </tr>
-                                <tr>
-                                    <td>炒菜</td>
-                                    <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                    <td>x2</td>
-                                    <td>69</td>
-                                    <td>148</td>
-                                </tr>
-                                <tr>
-                                    <td>炒菜</td>
-                                    <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                    <td>x2</td>
-                                    <td>69</td>
-                                    <td>148</td>
-                                </tr>
-                                <tr>
-                                    <td>炒菜</td>
-                                    <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                    <td>x2</td>
-                                    <td>69</td>
-                                    <td>148</td>
-                                </tr>
+                                 
                             </tbody>
                         </table>
 
@@ -199,8 +172,8 @@
                             <table class="am-table  am-table-striped am-text-nowrap">
                                 <tbody>
                                     <tr>
-                                        <td>下单时间: 2019-06-21 12:12:12
-                                            <br/>结账时间: 2019-06-21 14:14:14 </td>
+                                        <td>下单时间: {{current_desk.s_time}}
+                                            <br/>结账时间: {{current_desk.e_time}} </td>
                                         <td>
                                             <button type="submit" class="am-btn am-btn-primary">加菜</button>
                                             <button type="submit" class="am-btn am-btn-default">减菜</button>
@@ -248,7 +221,7 @@
                 }, {
                     id: 2,
                     name: 'A2',
-                    number: 0,
+                    number: 3,
                     status: {
                         title: "点餐中",
                         color: "rgb(53, 180, 0)"
@@ -256,13 +229,58 @@
                 }, {
                     id: 3,
                     name: 'A3',
-                    number: 3,
+                    number: 0,
                     status: {
                         title: "空桌",
                         color: "grey"
                     }
                 },
-            ]
+            ],
+            current_desk:{
+                    id: 1,
+                    name: 'A1',
+                    number: 10,
+                    s_time:'2019-06-21 12:12:12',
+                    e_time:'2019-06-21 14:14:14',
+                    status: {
+                        title: "就餐中",
+                        color: "rgb(255, 114, 61)"
+                    },
+                    dishes:[
+                        {
+                            id:1,
+                            name:'土鸡粥',
+                            number:1,
+                            type:'煲粥',
+                            unit_price:40,
+                            subtotal:40
+                        },
+                        {
+                            id:2,
+                            name:'牛河[少辣]',
+                            number:2,
+                            type:'炒菜',
+                            unit_price:15,
+                            subtotal:30
+                        },
+                        {
+                            id:3,
+                            name:'正宗扬州炒饭[中辣]',
+                            number:1,
+                            type:'炒菜',
+                            unit_price:12,
+                            subtotal:12
+                        },
+                        {
+                            id:3,
+                            name:'绿豆糖水',
+                            number:3,
+                            type:'糖水',
+                            unit_price:5,
+                            subtotal:15
+                        }
+                    ]
+                }
         },
         methods: {
             click_desk: function (item) {
