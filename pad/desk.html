@@ -57,403 +57,229 @@
             font-size: 20px;
             color: white;
         }
-        .manger_box{
+
+        .manger_box {
             display: none;
         }
     </style>
 </head>
 
 <body>
-    <header class="am-topbar am-topbar-inverse admin-header">
-        <div class="am-topbar-brand">
-            <strong>点餐</strong>
-            <small></small>
-        </div>
-        
+    <div id="app">
+        <header class="am-topbar am-topbar-inverse admin-header">
+            <div class="am-topbar-brand">
+                <strong>{{title}}</strong>
+                <small></small>
+            </div>
 
-        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
-            <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+                <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
                     <li>
-                            <a _href="#">
-                                <span class="am-icon-envelope-o"></span> 桌位管理
-                            </a>
-                        </li>
-            </ul>
-        </div>
-    </header>
-    <div class="am-cf admin-main">
-        <div class="admin-content">
-            <div class="admin-content-body">
-
-                <div class="box">
-                    <div class="item" style="    border: 1px solid rgb(53, 180, 0);">
-
-
-                        <div style="width:100%;height: 80%;background-color: rgb(53, 180, 0);">
-                            <p>A1</p>
-                            <p>5位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(53, 180, 0);">点餐中</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid grey;">
-                        <a href="index.html">
-                            <div style="width:100%;height: 80%;background-color: white;">
-                                <p style="color: black;">A2</p>
-
-                            </div>
+                        <a _href="#">
+                            <span class="am-icon-envelope-o"></span> 桌位管理
                         </a>
-                        <div style="text-align: center;color: grey;">空桌</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(255, 114, 61);">
-                        <!--就餐中,显示 订单对话框-->
-                        <a data-am-modal="{target: '#doc-modal-2', closeViaDimmer: 0, width: 900, height: 500}">
-                            <div style="width:100%;height: 80%;background-color: rgb(255, 114, 61);">
-                                <p>A3</p>
-                                <p>1位</p>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="am-cf admin-main">
+            <div class="admin-content">
+                <div class="admin-content-body">
+
+                    <div class="box">
+
+                        <div v-for="item in desks" v-on:click="click_desk(item)" class="item" v-bind:style="{ border: '1px solid ' + item.status.color}">
+
+                            <div style="width:100%;height: 80%; " v-bind:style="{ background: item.status.color}">
+                                <p>{{item.name}}</p>
+                                <p>{{item.number}}</p>
                             </div>
-                        </a>
-                        <div style="text-align: center;color: rgb(255, 114, 61)">就餐中</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
+                            <div style="text-align: center;" v-bind:style="{ color: item.status.color}">{{item.status.title}}</div>
+                            <div class="manger_box">
+                                <button class="am-btn am-btn-default">
+                                    <i class="am-icon-cog"></i>
+                                    设置
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(53, 180, 0);">
-                        <div style="width:100%;height: 80%;background-color: rgb(53, 180, 0);">
-                            <p>A1</p>
-                            <p>5位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(53, 180, 0);">点餐中</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid grey;">
-                        <div style="width:100%;height: 80%;background-color: white;">
-                            <p style="color: black;">A2</p>
 
-                        </div>
-                        <div style="text-align: center;color: grey;">空桌</div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(255, 114, 61);">
-                        <div style="width:100%;height: 80%;background-color: rgb(255, 114, 61);">
-                            <p>A3</p>
-                            <p>1位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(255, 114, 61)">就餐中</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(53, 180, 0);">
-                        <div style="width:100%;height: 80%;background-color: rgb(53, 180, 0);">
-                            <p>A1</p>
-                            <p>5位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(53, 180, 0);">点餐中</div>
-                    </div>
-                    <div class="item" style="    border: 1px solid grey;">
-                        <div style="width:100%;height: 80%;background-color: white;">
-                            <p style="color: black;">A2</p>
-
-                        </div>
-                        <div style="text-align: center;color: grey;">空桌</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(255, 114, 61);">
-                        <div style="width:100%;height: 80%;background-color: rgb(255, 114, 61);">
-                            <p>A3</p>
-                            <p>1位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(255, 114, 61)">就餐中</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(53, 180, 0);">
-                        <div style="width:100%;height: 80%;background-color: rgb(53, 180, 0);">
-                            <p>A1</p>
-                            <p>5位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(53, 180, 0);">点餐中</div>
-                    </div>
-                    <div class="item" style="    border: 1px solid grey;">
-                        <div style="width:100%;height: 80%;background-color: white;">
-                            <p style="color: black;">A2</p>
-
-                        </div>
-                        <div style="text-align: center;color: grey;">空桌</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(255, 114, 61);">
-                        <div style="width:100%;height: 80%;background-color: rgb(255, 114, 61);">
-                            <p>A3</p>
-                            <p>1位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(255, 114, 61)">就餐中</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(53, 180, 0);">
-                        <div style="width:100%;height: 80%;background-color: rgb(53, 180, 0);">
-                            <p>A1</p>
-                            <p>5位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(53, 180, 0);">点餐中</div>
-                    </div>
-                    <div class="item" style="    border: 1px solid grey;">
-                        <div style="width:100%;height: 80%;background-color: white;">
-                            <p style="color: black;">A2</p>
-
-                        </div>
-                        <div style="text-align: center;color: grey;">空桌</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(255, 114, 61);">
-                        <div style="width:100%;height: 80%;background-color: rgb(255, 114, 61);">
-                            <p>A3</p>
-                            <p>1位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(255, 114, 61)">就餐中</div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(53, 180, 0);">
-                        <div style="width:100%;height: 80%;background-color: rgb(53, 180, 0);">
-                            <p>A1</p>
-                            <p>5位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(53, 180, 0);">点餐中</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid grey;">
-                        <div style="width:100%;height: 80%;background-color: white;">
-                            <p style="color: black;">A2</p>
-
-                        </div>
-                        <div style="text-align: center;color: grey;">空桌</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(255, 114, 61);">
-                        <div style="width:100%;height: 80%;background-color: rgb(255, 114, 61);">
-                            <p>A3</p>
-                            <p>1位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(255, 114, 61)">就餐中</div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(53, 180, 0);">
-                        <div style="width:100%;height: 80%;background-color: rgb(53, 180, 0);">
-                            <p>A1</p>
-                            <p>5位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(53, 180, 0);">点餐中</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div class="item" style="    border: 1px solid grey;">
-                        <div style="width:100%;height: 80%;background-color: white;">
-                            <p style="color: black;">A2</p>
-
-                        </div>
-                        <div style="text-align: center;color: grey;">空桌</div>
-                    </div>
-                    <div class="item" style="    border: 1px solid rgb(255, 114, 61);">
-                        <div style="width:100%;height: 80%;background-color: rgb(255, 114, 61);">
-                            <p>A3</p>
-                            <p>1位</p>
-                        </div>
-                        <div style="text-align: center;color: rgb(255, 114, 61)">就餐中</div>
-                        <div class="manger_box">
-                            <button class="am-btn am-btn-default">
-                                <i class="am-icon-cog"></i>
-                                设置
-                            </button>
-                        </div>
-                    </div>
-                    <div  class="item" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 600, height: 325}" style="    border: 1px solid wheat;">
-                        <div style="width:100%;height: 80%;background-color: wheat;">
-                            <p>+</p>
-                        </div>
-                        <div style="text-align: center;color: wheat">增加新桌</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
-    <!--模态对话框-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">桌位管理
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <div class="am-modal-bd">
-                <form class="am-form" style=" text-align: left;">
-                    <div class="am-form-group">
-                        <label for="doc-ipt-email-1">桌位名称:</label>
-                        <input type="text" class="" id="doc-ipt-email-1" placeholder="输入桌位名称">
-                    </div>
-
-
-                    <div class="am-form-group">
-                        <div class="am-u-sm-10 am-u-sm-offset-2">
-                            <button type="submit" class="am-btn am-btn-default">保存</button>
+        <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+        <!--模态对话框-->
+        <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+            <div class="am-modal-dialog">
+                <div class="am-modal-hd">桌位管理
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+                </div>
+                <div class="am-modal-bd">
+                    <form class="am-form" style=" text-align: left;">
+                        <div class="am-form-group">
+                            <label for="doc-ipt-email-1">桌位名称:</label>
+                            <input type="text" class="" id="doc-ipt-email-1" placeholder="输入桌位名称">
                         </div>
-                    </div>
-                </form>
+
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-10 am-u-sm-offset-2">
+                                <button type="submit" class="am-btn am-btn-default">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!--下单对话框-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-2">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">下单: A1 用餐人数 1人
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <div class="am-modal-bd">
-                <div class="am-scrollable-horizontal" style=" text-align: left;">
-                    <table class="am-table am-table-bordered am-table-striped am-text-nowrap am-table-striped am-table-hover">
-                        <thead>
-                            <tr>
-                                <th>分类</th>
-                                <th>菜品</th>
-                                <th>数量</th>
-                                <th>单价</th>
-                                <th>小计</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>炒菜</td>
-                                <td>正宗北部湾红树林海鸭蛋包</td>
-                                <td>x2</td>
-                                <td>69</td>
-                                <td>148</td>
-                            </tr>
-                            <tr>
-                                <td>炒菜</td>
-                                <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                <td>x2</td>
-                                <td>69</td>
-                                <td>148</td>
-                            </tr>
-                            <tr>
-                                <td>炒菜</td>
-                                <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                <td>x2</td>
-                                <td>69</td>
-                                <td>148</td>
-                            </tr>
-                            <tr>
-                                <td>炒菜</td>
-                                <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                <td>x2</td>
-                                <td>69</td>
-                                <td>148</td>
-                            </tr>
-                            <tr>
-                                <td>炒菜</td>
-                                <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                <td>x2</td>
-                                <td>69</td>
-                                <td>148</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+        <!--下单对话框-->
+        <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-2">
+            <div class="am-modal-dialog">
+                <div class="am-modal-hd">下单: A1 用餐人数 1人
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
                 </div>
-                <div class="am-form-group">
-
-                    <div class="">
-                        <table class="am-table  am-table-striped am-text-nowrap">
+                <div class="am-modal-bd">
+                    <div class="am-scrollable-horizontal" style=" text-align: left;">
+                        <table class="am-table am-table-bordered am-table-striped am-text-nowrap am-table-striped am-table-hover">
+                            <thead>
+                                <tr>
+                                    <th>分类</th>
+                                    <th>菜品</th>
+                                    <th>数量</th>
+                                    <th>单价</th>
+                                    <th>小计</th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 <tr>
-                                    <td>下单时间: 2019-06-21 12:12:12
-                                        <br/>结账时间: 2019-06-21 14:14:14 </td>
-                                    <td>
-                                        <button type="submit" class="am-btn am-btn-primary">加菜</button>
-                                        <button type="submit" class="am-btn am-btn-default">减菜</button>
-                                        <button type="submit" class="am-btn am-btn-default">打印小票</button>
-                                    </td>
-                                    <td>
-                                        <div style="    float: right;">共9件, 合计: $999
-                                            <button type="submit" class="am-btn am-btn-danger">结账</button>
-                                        </div>
-                                    </td>
-
+                                    <td>炒菜</td>
+                                    <td>正宗北部湾红树林海鸭蛋包</td>
+                                    <td>x2</td>
+                                    <td>69</td>
+                                    <td>148</td>
+                                </tr>
+                                <tr>
+                                    <td>炒菜</td>
+                                    <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
+                                    <td>x2</td>
+                                    <td>69</td>
+                                    <td>148</td>
+                                </tr>
+                                <tr>
+                                    <td>炒菜</td>
+                                    <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
+                                    <td>x2</td>
+                                    <td>69</td>
+                                    <td>148</td>
+                                </tr>
+                                <tr>
+                                    <td>炒菜</td>
+                                    <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
+                                    <td>x2</td>
+                                    <td>69</td>
+                                    <td>148</td>
+                                </tr>
+                                <tr>
+                                    <td>炒菜</td>
+                                    <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
+                                    <td>x2</td>
+                                    <td>69</td>
+                                    <td>148</td>
                                 </tr>
                             </tbody>
                         </table>
 
                     </div>
+                    <div class="am-form-group">
 
+                        <div class="">
+                            <table class="am-table  am-table-striped am-text-nowrap">
+                                <tbody>
+                                    <tr>
+                                        <td>下单时间: 2019-06-21 12:12:12
+                                            <br/>结账时间: 2019-06-21 14:14:14 </td>
+                                        <td>
+                                            <button type="submit" class="am-btn am-btn-primary">加菜</button>
+                                            <button type="submit" class="am-btn am-btn-default">减菜</button>
+                                            <button type="submit" class="am-btn am-btn-default">打印小票</button>
+                                        </td>
+                                        <td>
+                                            <div style="    float: right;">共9件, 合计: $999
+                                                <button type="submit" class="am-btn am-btn-danger">结账</button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
+        <!--在这里编写你的代码-->
+
     </div>
-    <!--在这里编写你的代码-->
-
-    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-
-    <script src="/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>
-    <script src="http://amazeui.org/js/app.js"></script>
 </body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            title: '点餐',
+            desks: [
+                {
+                    id: 1,
+                    name: 'A1',
+                    number: 10,
+                    status: {
+                        title: "就餐中",
+                        color: "rgb(255, 114, 61)"
+                    }
+                }, {
+                    id: 2,
+                    name: 'A2',
+                    number: 0,
+                    status: {
+                        title: "点餐中",
+                        color: "rgb(53, 180, 0)"
+                    }
+                }, {
+                    id: 3,
+                    name: 'A3',
+                    number: 3,
+                    status: {
+                        title: "空桌",
+                        color: "grey"
+                    }
+                },
+            ]
+        },
+        methods: {
+            click_desk: function (item) {
+
+                if ('空桌' == item.status.title) {
+                    //跳转到另一个页面
+                    window.location.href = 'index.html';
+                } else if ('就餐中' == item.status.title) {
+                    console.log('就餐中');
+                    //弹出对话框
+                    $('#doc-modal-2').modal({ target: '#doc-modal-2', closeViaDimmer: 0, width: 900, height: 500 });
+                } else {
+
+                }
+            }
+        }
+    })
+</script>
 
 </html>
