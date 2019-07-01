@@ -227,7 +227,7 @@
                                                         <!--缩略图在标题左边-->
                                                         <li v-for="(d,index) in dis" class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                                                             <div class="am-u-sm-4 am-list-thumb">
-                                                                <img v-bind:src="d.img"  />
+                                                                <img v-bind:src="d.img" />
                                                             </div>
 
                                                             <div class=" am-u-sm-8 am-list-main">
@@ -242,11 +242,11 @@
                                                                     <span class="am-icon-check"></span>修改</button>
                                                             </div>
                                                         </li>
- 
+
                                                     </div>
                                                 </dd>
                                             </dl>
-                                        </section> 
+                                        </section>
                                     </ul>
 
                                 </div>
@@ -269,26 +269,8 @@
                 <div class="admin-content-body">
                     <div data-am-widget="tabs" class="am-tabs am-tabs-d2">
                         <ul class="am-tabs-nav am-cf">
-                            <li class="am-active">
-                                <a href="[data-tab-panel-0]">粥类</a>
-                            </li>
-                            <li class="">
-                                <a href="[data-tab-panel-1]">卤水</a>
-                            </li>
-                            <li class="">
-                                <a href="[data-tab-panel-2]">青菜</a>
-                            </li>
-                            <li class="">
-                                <a href="[data-tab-panel-3]">酒水</a>
-                            </li>
-                            <li class="">
-                                <a href="[data-tab-panel-4]">小炒</a>
-                            </li>
-                            <li class="">
-                                <a href="[data-tab-panel-5]">炒菜</a>
-                            </li>
-                            <li class="">
-                                <a href="[data-tab-panel-6]">其他</a>
+                            <li v-bind:class="[0 === index ? 'am-active' : 0]" v-for="(item,index) in all_dishes_types">
+                                <a v-bind:href="item.href">{{item.name}}</a>
                             </li>
                         </ul>
                         <div class="am-tabs-bd">
@@ -843,136 +825,107 @@
                 </div>
             </div>
         </div>
-        <!-- content end -->
+        
 
-    </div>
-
-    <!--模态对话框-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">修改菜品
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <div class="am-modal-bd">
-                <form class="am-form" style=" text-align: left;">
-                    <div class="am-form-group">
-                        <label for="doc-ipt-email-1">菜品名称:</label>
-                        <input disabled type="text" class="" id="doc-ipt-email-1" placeholder="番薯叶" value="番薯叶">
-                    </div>
-                    <!--数量S-->
-                    <div class="am-form-group">
-                        <label for="doc-ipt-email-1">数量:</label>
-                        <ul class="btn-numbox">
-                            <li>
-                                <ul class="count">
-                                    <li>
-                                        <span id="num-jian" class="num-jian">-</span>
-                                    </li>
-                                    <li>
-                                        <input type="text" class="input-num" id="input-num" value="0" />
-                                    </li>
-                                    <li>
-                                        <span id="num-jia" class="num-jia">+</span>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--数量E-->
-
-                    <div class="am-form-group">
-                        <label for="doc-ipt-email-1">菜品规格:</label>
-                        <div class="box">
-                            <span class="item">无辣</span>
-                            <span class="item">少辣</span>
-                            <span class="item">中辣</span>
-                            <span class="item">大辣</span>
-                            <span class="item">无葱</span>
-                            <span class="item">无豆芽</span>
-                            <span class="item">无火腿</span>
-                            <input style="    width: 200px;" class="item" type="text" placeholder="其他特别说明">
+        <!--模态对话框-->
+        <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+            <div class="am-modal-dialog">
+                <div class="am-modal-hd">修改菜品
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+                </div>
+                <div class="am-modal-bd">
+                    <form class="am-form" style=" text-align: left;">
+                        <div class="am-form-group">
+                            <label for="doc-ipt-email-1">菜品名称:</label>
+                            <input disabled type="text" class="" id="doc-ipt-email-1" placeholder="番薯叶" value="番薯叶">
                         </div>
-                    </div>
+                        <!--数量S-->
+                        <div class="am-form-group">
+                            <label for="doc-ipt-email-1">数量:</label>
+                            <ul class="btn-numbox">
+                                <li>
+                                    <ul class="count">
+                                        <li>
+                                            <span id="num-jian" class="num-jian">-</span>
+                                        </li>
+                                        <li>
+                                            <input type="text" class="input-num" id="input-num" value="0" />
+                                        </li>
+                                        <li>
+                                            <span id="num-jia" class="num-jia">+</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--数量E-->
 
+                        <div class="am-form-group">
+                            <label for="doc-ipt-email-1">菜品规格:</label>
+                            <div class="box">
+                                <span class="item">无辣</span>
+                                <span class="item">少辣</span>
+                                <span class="item">中辣</span>
+                                <span class="item">大辣</span>
+                                <span class="item">无葱</span>
+                                <span class="item">无豆芽</span>
+                                <span class="item">无火腿</span>
+                                <input style="    width: 200px;" class="item" type="text" placeholder="其他特别说明">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-10 am-u-sm-offset-2">
+                                <button type="submit" class="am-btn am-btn-default">修改</button>
+                                <button style="    float: right;" type="submit" class="am-btn am-btn-danger">删除</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--下单对话框-->
+        <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-2">
+            <div class="am-modal-dialog">
+                <div class="am-modal-hd">下单: {{current_desk.name}} 用餐人数 {{current_desk.number}}人
+                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+                </div>
+                <div class="am-modal-bd">
+                    <div class="am-scrollable-horizontal" style=" text-align: left;">
+                        <table class="am-table am-table-bordered am-table-striped am-text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>分类</th>
+                                    <th>菜品</th>
+                                    <th>数量</th>
+                                    <th>单价</th>
+                                    <th>小计</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in current_desk.dishes">
+                                    <td>{{item.type}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td>x{{item.number}}</td>
+                                    <td>{{item.unit_price}}</td>
+                                    <td>{{item.subtotal}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
                     <div class="am-form-group">
                         <div class="am-u-sm-10 am-u-sm-offset-2">
-                            <button type="submit" class="am-btn am-btn-default">修改</button>
-                            <button style="    float: right;" type="submit" class="am-btn am-btn-danger">删除</button>
+                            <button type="submit" class="am-btn am-btn-default">下单</button>
+                            <button style="    float: right;" type="submit" class="am-btn am-btn-danger">返回</button>
                         </div>
 
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--下单对话框-->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-2">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">下单: A1 用餐人数 1人
-                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-            </div>
-            <div class="am-modal-bd">
-                <div class="am-scrollable-horizontal" style=" text-align: left;">
-                    <table class="am-table am-table-bordered am-table-striped am-text-nowrap">
-                        <thead>
-                            <tr>
-                                <th>分类</th>
-                                <th>菜品</th>
-                                <th>数量</th>
-                                <th>单价</th>
-                                <th>小计</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>炒菜</td>
-                                <td>正宗北部湾红树林海鸭蛋包</td>
-                                <td>x2</td>
-                                <td>69</td>
-                                <td>148</td>
-                            </tr>
-                            <tr>
-                                <td>炒菜</td>
-                                <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                <td>x2</td>
-                                <td>69</td>
-                                <td>148</td>
-                            </tr>
-                            <tr>
-                                <td>炒菜</td>
-                                <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                <td>x2</td>
-                                <td>69</td>
-                                <td>148</td>
-                            </tr>
-                            <tr>
-                                <td>炒菜</td>
-                                <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                <td>x2</td>
-                                <td>69</td>
-                                <td>148</td>
-                            </tr>
-                            <tr>
-                                <td>炒菜</td>
-                                <td>正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包[正宗北部湾红树林海鸭蛋包正宗北部湾红树林海鸭蛋包]</td>
-                                <td>x2</td>
-                                <td>69</td>
-                                <td>148</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class="am-form-group">
-                    <div class="am-u-sm-10 am-u-sm-offset-2">
-                        <button type="submit" class="am-btn am-btn-default">下单</button>
-                        <button style="    float: right;" type="submit" class="am-btn am-btn-danger">返回</button>
-                    </div>
-
                 </div>
             </div>
         </div>
-    </div>
+        <!-- content end -->
     </div>
 
 </body>
@@ -1003,7 +956,7 @@
                         id: 1,
                         name: '土鸡粥',
                         number: 1,
-                        img:'/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
+                        img: '/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
                         type: '煲粥',
                         unit_price: 40,
                         subtotal: 40
@@ -1012,7 +965,7 @@
                         id: 2,
                         name: '牛河[少辣]',
                         number: 2,
-                        img:'/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
+                        img: '/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
                         type: '炒菜',
                         unit_price: 15,
                         subtotal: 30
@@ -1021,7 +974,7 @@
                         id: 3,
                         name: '正宗扬州炒饭[中辣]',
                         number: 1,
-                        img:'/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
+                        img: '/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
                         type: '炒菜',
                         unit_price: 12,
                         subtotal: 12
@@ -1030,13 +983,61 @@
                         id: 3,
                         name: '绿豆糖水',
                         number: 3,
-                        img:'/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
+                        img: '/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
                         type: '糖水',
                         unit_price: 5,
                         subtotal: 15
                     }
                 ]
-            }
+            },
+            /*所有菜品的分类*/
+            all_dishes_types:[
+                {id:1,name:"粥类",href:"[data-tab-panel-0]"},
+                {id:2,name:"卤水",href:"[data-tab-panel-1]"},
+                {id:3,name:"青菜",href:"[data-tab-panel-2]"},
+                {id:4,name:"酒水",href:"[data-tab-panel-3]"},
+                {id:5,name:"小炒",href:"[data-tab-panel-4]"},
+                {id:6,name:"其它",href:"[data-tab-panel-5]"}
+            ],
+            /*所有菜品*/
+            all_dishes: [
+                    {
+                        id: 1,
+                        name: '土鸡粥',
+                        number: 1,
+                        img: '/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
+                        type: '煲粥',
+                        unit_price: 40,
+                        subtotal: 40
+                    },
+                    {
+                        id: 2,
+                        name: '牛河[少辣]',
+                        number: 2,
+                        img: '/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
+                        type: '炒菜',
+                        unit_price: 15,
+                        subtotal: 30
+                    },
+                    {
+                        id: 3,
+                        name: '正宗扬州炒饭[中辣]',
+                        number: 1,
+                        img: '/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
+                        type: '炒菜',
+                        unit_price: 12,
+                        subtotal: 12
+                    },
+                    {
+                        id: 3,
+                        name: '绿豆糖水',
+                        number: 3,
+                        img: '/AmazeUI-2.7.2/assets/i/app-icon72x72@2x.png',
+                        type: '糖水',
+                        unit_price: 5,
+                        subtotal: 15
+                    }
+                ]
         },
         methods: {
             click_desk: function (item) {
@@ -1064,11 +1065,11 @@
                 return total_money;
             },
             //已经选择的菜品
-            dishes:function(){
+            dishes: function () {
                 let cate_dishes = {};//
                 this.current_desk.dishes.forEach(function (item) {
                     //按type分类
-                    if(!cate_dishes[item.type]){
+                    if (!cate_dishes[item.type]) {
                         cate_dishes[item.type] = [];
                     }
                     cate_dishes[item.type].push(item);
