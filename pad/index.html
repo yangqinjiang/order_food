@@ -315,7 +315,7 @@
                         </div>
                         <!--数量S-->
                         <div class="am-form-group">
-                            <label for="doc-ipt-email-1">数量:{{current_choose_dish.count}}</label>
+                            <label for="doc-ipt-email-1">数量:{{current_choose_dish.number}}</label>
                             <ul class="btn-numbox">
                                 <li>
                                     <ul class="count">
@@ -323,7 +323,7 @@
                                             <span id="num-jian" class="num-jian">-</span>
                                         </li>
                                         <li>
-                                            <input type="text" class="input-num" id="input-num" v-model="current_choose_dish.count" />
+                                            <input type="text" class="input-num" id="input-num" v-model="current_choose_dish.number" />
                                         </li>
                                         <li>
                                             <span id="num-jia" class="num-jia">+</span>
@@ -372,7 +372,7 @@
 
                         <div class="am-form-group">
                             <div class="am-u-sm-10 am-u-sm-offset-2" style="padding: 20px;">
-                                <button v-on:click="add_dish" style="    float: right;"   class="am-btn am-btn-primary">添加</button>
+                                <button v-on:click="add_dish" style="    float: right;"   class="am-btn am-btn-primary" data-am-modal-close>添加</button>
                             </div>
 
                         </div>
@@ -734,20 +734,21 @@
                     ]
                 }
             ],
-            current_choose_dish: {/*当前选择的菜品*/count:1},
+            current_choose_dish: {/*当前选择的菜品*/},
             current_choose_dish_remark:[]
         },
         methods: {
             add_dish:function(){
                 this.current_choose_dish.remark  = this.current_choose_dish_remark;
-              console.info(this.current_choose_dish); 
+              console.info(this.current_choose_dish);
+              //加入菜单 
               this.current_desk.dishes.push(this.current_choose_dish);
+              //隐藏对话框
+              this.current_choose_dish = {};//清空
             },
             choose_dish: function (item) {
-                //item.count = 1;
-                //item.remark = [];//其他说明
+                item.number = 1;//恢复数量为 1
                 this.current_choose_dish = item;
-                //this.current_choose_dish.count = 1;
                 //弹出对话框
                 $('#doc-modal-1').modal({ target: '#doc-modal-1', closeViaDimmer: 0, width: 700 });
             }
