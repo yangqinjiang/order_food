@@ -307,7 +307,7 @@
                     <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
                 </div>
                 <div class="am-modal-bd">
-                    <form class="am-form" style=" text-align: left;">
+                    <div class="am-form" style=" text-align: left;">
                         <div class="am-form-group">
                             <label for="doc-ipt-email-1">菜品名称:</label>
                             <img :src="current_choose_dish.img" style="width:50px;">
@@ -315,7 +315,7 @@
                         </div>
                         <!--数量S-->
                         <div class="am-form-group">
-                            <label for="doc-ipt-email-1">数量:</label>
+                            <label for="doc-ipt-email-1">数量:{{current_choose_dish.count}}</label>
                             <ul class="btn-numbox">
                                 <li>
                                     <ul class="count">
@@ -323,7 +323,7 @@
                                             <span id="num-jian" class="num-jian">-</span>
                                         </li>
                                         <li>
-                                            <input type="text" class="input-num" id="input-num" value="0" />
+                                            <input type="text" class="input-num" id="input-num" v-model="current_choose_dish.count" />
                                         </li>
                                         <li>
                                             <span id="num-jia" class="num-jia">+</span>
@@ -372,11 +372,11 @@
 
                         <div class="am-form-group">
                             <div class="am-u-sm-10 am-u-sm-offset-2" style="padding: 20px;">
-                                <button style="    float: right;" type="submit" class="am-btn am-btn-primary">添加</button>
+                                <button v-on:click="add_dish" style="    float: right;"   class="am-btn am-btn-primary">添加</button>
                             </div>
 
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -734,13 +734,20 @@
                     ]
                 }
             ],
-            current_choose_dish: {/*当前选择的菜品*/ },
+            current_choose_dish: {/*当前选择的菜品*/count:1},
             current_choose_dish_remark:[]
         },
         methods: {
+            add_dish:function(){
+                this.current_choose_dish.remark  = this.current_choose_dish_remark;
+              console.info(this.current_choose_dish); 
+              this.current_desk.dishes.push(this.current_choose_dish);
+            },
             choose_dish: function (item) {
+                //item.count = 1;
                 //item.remark = [];//其他说明
                 this.current_choose_dish = item;
+                //this.current_choose_dish.count = 1;
                 //弹出对话框
                 $('#doc-modal-1').modal({ target: '#doc-modal-1', closeViaDimmer: 0, width: 700 });
             }
